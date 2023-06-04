@@ -8,3 +8,6 @@ todo-list
 - Gradle
 - JPA
 - H2 Database
+
+
+https://www.notion.so/todo-list-78dece3d99864017a9c6a85580c85e79
