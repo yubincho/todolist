@@ -1,6 +1,6 @@
 package com.example.todolist.controller;
 
-import com.example.todolist.domain.TodoList;
+import com.example.todolist.domain.TodoEntity;
 import com.example.todolist.dto.RequestTodoDto;
 import com.example.todolist.dto.ResponseTodoDto;
 import com.example.todolist.repository.TodolistRepository;
@@ -40,10 +40,9 @@ public class TodoController {
     }
 
     @GetMapping("/get/all")
-    public List<ResponseTodoDto> getAllList() {
+    public ResponseEntity<List<ResponseTodoDto>> getAllList() {
 
-        return todoService.getAll();
-
+        return new ResponseEntity<>(todoService.getAll(), HttpStatus.OK);
     }
 
 
@@ -59,11 +58,11 @@ public class TodoController {
 
 
     @PostMapping("/post")
-    public ResponseEntity<TodoList> create(@RequestBody RequestTodoDto dto) {
+    public ResponseEntity<TodoEntity> create(@RequestBody RequestTodoDto dto) {
 
-        TodoList newRes = RequestTodoDto.dtoToEntity(dto);
+        TodoEntity newRes = RequestTodoDto.dtoToEntity(dto);
 
-        TodoList saved = todolistRepository.save(newRes);
+        TodoEntity saved = todolistRepository.save(newRes);
         System.out.println(saved);
         System.out.println("-----------");
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
@@ -72,7 +71,7 @@ public class TodoController {
 
 
     @PostMapping("/update/{id}")
-    public Optional<TodoList> update(@PathVariable Long id, @RequestBody RequestTodoDto dto) {
+    public Optional<TodoEntity> update(@PathVariable Long id, @RequestBody RequestTodoDto dto) {
 
            return todoService.update(id, dto);
 

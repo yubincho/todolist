@@ -18,12 +18,12 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public class DomainAuditing {
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     @CreatedDate
     @Column(name="CREATEDAT", nullable = false, updatable = false)
     private LocalDateTime createAt;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     @LastModifiedDate
     @Column(name="MODIFIEDAT", nullable = false)
     private LocalDateTime modifiedAt;

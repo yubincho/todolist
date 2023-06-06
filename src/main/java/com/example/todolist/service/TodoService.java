@@ -1,6 +1,6 @@
 package com.example.todolist.service;
 
-import com.example.todolist.domain.TodoList;
+import com.example.todolist.domain.TodoEntity;
 import com.example.todolist.dto.RequestTodoDto;
 import com.example.todolist.dto.ResponseTodoDto;
 import com.example.todolist.repository.TodolistRepository;
@@ -43,7 +43,7 @@ public class TodoService {
 //
 //        return result;
 
-        Optional<TodoList> one = todolistRepository.findById(id);
+        Optional<TodoEntity> one = todolistRepository.findById(id);
         System.out.println(one);
 //        return ResponseTodoDto.from(one.orElseThrow());
 //        ResponseTodoDto res = ResponseTodoDto.from(one.orElseThrow());
@@ -55,16 +55,16 @@ public class TodoService {
     @Transactional(readOnly = true)
     public List<ResponseTodoDto> getAll() {
 
-        List<TodoList> lists = todolistRepository.findAll();
+        List<TodoEntity> lists = todolistRepository.findAll();
 
         return lists.stream().map(v -> new ResponseTodoDto(Optional.ofNullable(v))).collect(Collectors.toList());
 
     }
 
 
-    public Optional<TodoList> update(Long id, RequestTodoDto dto) {
+    public Optional<TodoEntity> update(Long id, RequestTodoDto dto) {
 
-        Optional<TodoList> find = todolistRepository.findById(id);
+        Optional<TodoEntity> find = todolistRepository.findById(id);
 
         if (Objects.equals(find.get().getId(), id)) {
             find.get().setContent(dto.getContent());

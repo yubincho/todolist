@@ -1,20 +1,24 @@
 package com.example.todolist.domain;
 
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
 
-@Entity
-@Data
-@Builder
+
+@Getter @Setter
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Table(name = "todo_list")
-public class TodoList {
+@Entity
+public class TodoEntity extends DomainAuditing {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "todolist_id")
     private Long id;
 
@@ -22,8 +26,8 @@ public class TodoList {
     @Column(nullable = false, length = 10000)
     private String content;
 
-    @Builder
-    public TodoList(String content) {
+
+    public TodoEntity(String content) {
         this.content = content;
     }
 

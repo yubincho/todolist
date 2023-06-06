@@ -1,8 +1,6 @@
 package com.example.todolist.repository;
 
-import com.example.todolist.domain.TodoList;
 import com.example.todolist.service.TodoService;
-import org.assertj.core.api.ThrowableTypeAssert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,10 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
-import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 
 
 @SpringBootTest

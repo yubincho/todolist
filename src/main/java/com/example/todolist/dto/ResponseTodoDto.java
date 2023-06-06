@@ -1,9 +1,8 @@
 package com.example.todolist.dto;
 
-import com.example.todolist.domain.TodoList;
+import com.example.todolist.domain.TodoEntity;
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Data
@@ -29,14 +28,14 @@ public class ResponseTodoDto {
 
 
     // entity -> dto
-    public ResponseTodoDto(Optional<TodoList> one) {
+    public ResponseTodoDto(Optional<TodoEntity> one) {
         this.id = one.get().getId();
         this.content = one.get().getContent();
     }
 
 
     // entity -> dto
-    public static ResponseTodoDto from(TodoList entity) {
+    public static ResponseTodoDto from(TodoEntity entity) {
         return new ResponseTodoDto(
                 entity.getId(),
                 entity.getContent()

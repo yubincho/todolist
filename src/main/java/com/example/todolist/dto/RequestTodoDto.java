@@ -1,9 +1,7 @@
 package com.example.todolist.dto;
 
-import com.example.todolist.domain.TodoList;
+import com.example.todolist.domain.TodoEntity;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 
 @Data
@@ -15,17 +13,26 @@ public class RequestTodoDto {
 
     private String content;
 
+
+    // dto -> entity
+    public static TodoEntity dtoToEntity(RequestTodoDto dto) {
+        return new TodoEntity(
+//              dto.get
+             dto.getContent()
+        );
+    }
+
 //    private LocalDateTime createdAt;
 //
 //    private LocalDateTime modifiedAt;
 
 
     // dto -> entity
-    public static TodoList dtoToEntity(RequestTodoDto dto) {
-        return new TodoList(
-//                dto.getId(),
-                dto.getContent()
-        );
-    }
+//    public static TodoEntity dtoToEntity(RequestTodoDto dto) {
+//        return new TodoEntity(
+////                dto.getId(),
+//                dto.getContent()
+//        );
+
 
 }
