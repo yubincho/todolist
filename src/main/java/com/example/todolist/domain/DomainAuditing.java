@@ -1,5 +1,6 @@
 package com.example.todolist.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
@@ -18,12 +19,12 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public class DomainAuditing {
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "Asia/Seoul")
     @CreatedDate
     @Column(name="CREATEDAT", nullable = false, updatable = false)
     private LocalDateTime createAt;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "Asia/Seoul")
     @LastModifiedDate
     @Column(name="MODIFIEDAT", nullable = false)
     private LocalDateTime modifiedAt;

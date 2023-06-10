@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString(callSuper = true)
+@Builder
 @EqualsAndHashCode(callSuper = true)
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
