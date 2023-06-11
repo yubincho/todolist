@@ -20,7 +20,7 @@ spring:
   jpa:
     generate-ddl: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     #      ddl-auto: none
     defer-datasource-initialization: true
     properties:
