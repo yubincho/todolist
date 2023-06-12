@@ -2,7 +2,6 @@ package com.example.todolist.controller;
 
 import com.example.todolist.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +16,7 @@ public class ItemController {
 
     @GetMapping("/category")
     public ResponseEntity<?> getAllCategory() {
+        System.out.println(categoryRepository.findAll() + "#########");
         return ResponseEntity.ok(categoryRepository.findAll());
     }
 }

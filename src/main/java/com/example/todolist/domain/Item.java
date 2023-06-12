@@ -5,17 +5,16 @@ import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.LinkedHashSet;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
-@Setter
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class ItemEntity extends DomainAuditing {
+public class Item extends DomainAuditing {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,11 +37,12 @@ public class ItemEntity extends DomainAuditing {
     private String itemImage;
 
     // category
+//    @JsonIgnore
     @OneToMany(mappedBy = "item")
-    private Set<CategoryBridge> categoryBridge = new LinkedHashSet<>();
+    private Set<CategoryBridge> categoryBridge = new HashSet<>();
 
     @Builder
-    public ItemEntity(Long id, String name, Integer stock, Integer price, String description, String itemImage) {
+    public Item(Long id, String name, Integer stock, Integer price, String description, String itemImage) {
         this.id = id;
         this.name = name;
         this.stock = stock;
