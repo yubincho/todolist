@@ -1,6 +1,7 @@
 package com.example.todolist.domain;
 
 
+import com.example.todolist.dto.ValidRequestDto;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -8,11 +9,11 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter
+@Getter @Setter
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @EntityListeners(AuditingEntityListener.class)
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @Entity
 public class Item extends DomainAuditing {
 
@@ -30,7 +31,7 @@ public class Item extends DomainAuditing {
     @Column(nullable = false)
     private Integer price;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String description;
 
     @Column(nullable = true)
@@ -41,7 +42,7 @@ public class Item extends DomainAuditing {
     @OneToMany(mappedBy = "item")
     private Set<CategoryBridge> categoryBridge = new HashSet<>();
 
-    @Builder
+
     public Item(Long id, String name, Integer stock, Integer price, String description, String itemImage) {
         this.id = id;
         this.name = name;
@@ -49,5 +50,17 @@ public class Item extends DomainAuditing {
         this.price = price;
         this.description = description;
         this.itemImage = itemImage;
+    }
+
+
+    public Item(String name, Integer price, Integer stock, String description, String itemImage) {
+    }
+
+    public void modifyItem(ValidRequestDto dto) {
+        this.name = dto.getName();
+        this.stock = dto.getStock();
+        this.price = dto.getPrice();
+        this.description = dto.getDescription();
+        this.itemImage = dto.getItemImage();
     }
 }

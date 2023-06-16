@@ -7,6 +7,7 @@ import com.example.todolist.repository.TodolistRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.Objects;
@@ -62,7 +63,7 @@ public class TodoService {
     }
 
 
-    public Optional<TodoEntity> update(Long id, RequestTodoDto dto) {
+    public Optional<TodoEntity> update(@Validated Long id, RequestTodoDto dto) {
 
         Optional<TodoEntity> find = todolistRepository.findById(id);
 
